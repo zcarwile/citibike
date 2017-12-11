@@ -1,0 +1,30 @@
+CREATE EXTERNAL TABLE IF NOT EXISTS citibike_trips(
+tripduration SMALLINT, starttime TIMESTAMP, stoptime TIMESTAMP,
+start_station_id SMALLINT, start_station_name STRING,
+start_station_latitutude FLOAT, start_station_longitude FLOAT,
+end_station_id SMALLINT, end_station_name STRING,
+end_station_latitude FLOAT, end_station_longitude FLOAT,
+bikeid INT, usertype STRING, birth_year INT, gender TINYINT)
+COMMENT 'Citibike Trip Data'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+LOCATION '/user/ubuntu/citibike_trips'
+tblproperties ("skip.header.line.count"="1");
+
+CREATE EXTERNAL TABLE IF NOT EXISTS nyc_weather(
+TS_year SMALLINT, TS_month TINYINT, TS_day TINYINT, 
+TS_hour TINYINT, TS_minute TINYINT,
+humidity FLOAT,visibility FLOAT, nearestStormBearing SMALLINT, 
+summary STRING, ozone FLOAT,
+time INT, precipIntensity FLOAT, apparentTemperature FLOAT, 
+windGust FLOAT, windSpeed FLOAT,
+windBearing INT, nearestStormDistance FLOAT, 
+precipProbability FLOAT, uvIndex INT, pressure FLOAT, 
+cloudCover FLOAT, icon STRING, dewPoint FLOAT, temperature FLOAT)
+COMMENT 'NYC Weather Data'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+LOCATION '/user/ubuntu/citibike_weather'
+tblproperties ("skip.header.line.count"="1");
