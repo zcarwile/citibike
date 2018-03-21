@@ -14,7 +14,10 @@ fname = dir + "citibike_" + timestamp + ".json"
 with open(fname,"w") as f:
     f.write(j)
 
-weather_raw = urlopen("https://api.forecast.io/forecast/62b3f08596594954c4856e61610736ee/40.71,-74.01")
+with open("key.txt","r") as f:
+    key = f.read().replace('\n','')
+
+weather_raw = urlopen("https://api.forecast.io/forecast/" + key + "/40.71,-74.01")
 weather_json = json.loads(weather_raw.read().decode('utf-8'))
 weather_currently = weather_json['currently']
 weather = str(weather_currently)
